@@ -1,0 +1,14 @@
+<section class="contact-page">
+    <!-- <p>contact-page works!</p> -->
+
+
+
+    <!-- <contact-details [petId]="selectedPetId" *ngIf="selectedPetId; else petList"></contact-details> -->
+    <contact-details (onBack)="onBack()" [contactId]="contactSelectedId" *ngIf="contactSelectedId; else contactList" ></contact-details>
+
+    <ng-template #contactList>
+        <contact-filter></contact-filter>
+        <contact-list (onSelect)="onSelectUser($event)" [contacts]="contacts$ | async"></contact-list>
+    </ng-template>
+
+</section>
