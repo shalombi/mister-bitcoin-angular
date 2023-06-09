@@ -15,7 +15,6 @@ export class ContactPageComponent implements OnInit {
   constructor(private userService: UserService, private contactService: ContactService) { }
 
   contacts$!: Observable<Contact[]> | any
-  contactSelectedId !: string | null
 
   ngOnInit(): void {
     this.contactService.loadContacts({ term: '' })
@@ -23,12 +22,14 @@ export class ContactPageComponent implements OnInit {
     this.contacts$ = this.contactService.contacts$
   }
 
-  onSelectUser(selectId: string) {
-    this.contactSelectedId = selectId
+
+  onAddContact() {
+    console.log('add contact')
+    
   }
 
-  onBack() {
-    this.contactSelectedId = null
+  onRemoveContact(contactId: string) {
+    this.contactService.deleteContact(contactId)
   }
 
 }

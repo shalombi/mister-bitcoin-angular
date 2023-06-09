@@ -17,11 +17,6 @@ export class UserService {
       coins: 100,
       moves: [1]
     },
-    {
-      name: "Shuki",
-      coins: 200,
-      moves: [1]
-    }
 
   ]
 

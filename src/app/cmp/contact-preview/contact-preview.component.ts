@@ -7,17 +7,17 @@ import { Contact } from 'src/app/models/contact.model';
   styleUrls: ['./contact-preview.component.scss']
 })
 export class ContactPreviewComponent implements OnInit {
-  @Input() contact!: Contact | null
+  @Input() contact!: Contact
   @Output() onSelect = new EventEmitter<string>()
+  @Output() onRemove = new EventEmitter<string>()
 
   ngOnInit(): void {
   }
 
-  onSelectUser() {
-    console.log(this.contact?._id)
 
-    this.onSelect.emit(this.contact?._id)
-
+  onRemoveContact() {
+    this.onRemove.emit(this.contact._id)
+    console.log(this.contact._id)
   }
 
 

@@ -4,11 +4,12 @@
 
 
     <!-- <contact-details [petId]="selectedPetId" *ngIf="selectedPetId; else petList"></contact-details> -->
-    <contact-details (onBack)="onBack()" [contactId]="contactSelectedId" *ngIf="contactSelectedId; else contactList" ></contact-details>
+    <contact-details> </contact-details>
 
-    <ng-template #contactList>
+
+        <button (click)="onAddContact()">add contact</button>
         <contact-filter></contact-filter>
-        <contact-list (onSelect)="onSelectUser($event)" [contacts]="contacts$ | async"></contact-list>
-    </ng-template>
+        <contact-list (onRemove)="onRemoveContact($event)"
+            [contacts]="contacts$ | async"></contact-list>
 
 </section>

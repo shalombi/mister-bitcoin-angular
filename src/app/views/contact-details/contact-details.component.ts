@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { lastValueFrom } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { lastValueFrom, Subscription } from 'rxjs';
 import { Contact } from 'src/app/models/contact.model';
 import { ContactService } from 'src/app/services/contact.service';
 
@@ -9,18 +10,29 @@ import { ContactService } from 'src/app/services/contact.service';
   styleUrls: ['./contact-details.component.scss']
 })
 export class ContactDetailsComponent implements OnInit {
-  constructor(private contactService: ContactService) { }
+  constructor(
+    private contactService: ContactService,
+    private route: ActivatedRoute,
+    private router: Router,
+  ) { }
   @Input() contactId!: string
-  @Output() onBack = new EventEmitter<string>()
 
   contact!: Contact | any
 
+  subscription!: Subscription
+
   async ngOnInit(): Promise<void> {
-    const contact = await lastValueFrom(this.contactService.getContactById(this.contactId))
-    this.contact = contact
+    // const contact = await lastValueFrom(this.contactService.getContactById(this.contactId))
+    // this.contact = contact
+
+    this.subscription = this.route.params.subscribe(async params => {
+      const contactId = params['id']
+      const contact = await lastValueFrom(this.contactService.getContactById(contactId))
+      this.contact = contact
+
+    })
+
   }
 
-  onBackPage() {
-    this.onBack.emit()
-  }
+
 }

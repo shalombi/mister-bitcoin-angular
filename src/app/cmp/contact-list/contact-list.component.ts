@@ -9,9 +9,11 @@ import { Contact } from 'src/app/models/contact.model';
 export class ContactListComponent {
   @Input() contacts!: Contact[] | null
   @Output() onSelect = new EventEmitter<string>()
+  @Output() onRemove = new EventEmitter<string>()
 
-  onSelectUser($event:string) {
-    this.onSelect.emit($event)
+  onRemoveContact($event:string) {
+    this.onRemove.emit($event)
     // (onSelect)="onSelect.emit($event)"
   }
+  
 }
