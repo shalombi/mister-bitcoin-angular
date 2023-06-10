@@ -6,19 +6,19 @@ import { ContactPageComponent } from './views/contact-page/contact-page.componen
 import { UserIndexComponent } from './views/user-index/user-index.component';
 
 const routes: Routes = [
-
+  
   {
     path: '', component: UserIndexComponent,
+  },
+  {
+    path: 'contact/:id',
+    component: ContactDetailsComponent,
   },
   {
     path: 'contact', component: ContactPageComponent,children: [
       { path: 'edit/:id', component: ContactEditComponent },
       { path: 'edit', component: ContactEditComponent }
     ]
-  },
-  {
-    path: 'contact/:id',
-    component: ContactDetailsComponent,
   },
 
   // {

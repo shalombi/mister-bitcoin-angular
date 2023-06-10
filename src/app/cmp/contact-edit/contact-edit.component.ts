@@ -21,6 +21,7 @@ export class ContactEditComponent implements OnInit {
 
   ngOnInit(): void {
     // console.log(this.route.params,'this.route.params')
+    
     this.subscription = this.route.params.subscribe(async ({ id }) => {
       this.contact = id
         ? await lastValueFrom(this.contactService.getContactById(id))
