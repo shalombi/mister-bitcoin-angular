@@ -1,6 +1,6 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { ChildActivationEnd } from '@angular/router';
+import { ChildActivationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Contact } from 'src/app/models/contact.model';
 import { ContactService } from 'src/app/services/contact.service';
@@ -12,7 +12,11 @@ import { UserService } from 'src/app/services/user.service.service';
   styleUrls: ['./contact-page.component.scss']
 })
 export class ContactPageComponent implements OnInit {
-  constructor(private userService: UserService, private contactService: ContactService) { }
+  constructor(
+    private userService: UserService,
+    private contactService: ContactService,
+    private router: Router,
+  ) { }
 
   contacts$!: Observable<Contact[]> | any
 
@@ -25,7 +29,8 @@ export class ContactPageComponent implements OnInit {
 
   onAddContact() {
     console.log('add contact')
-    
+    this.router.navigateByUrl('/contact/edit')
+
   }
 
   onRemoveContact(contactId: string) {

@@ -1,15 +1,10 @@
 <section class="contact-page">
-    <!-- <p>contact-page works!</p> -->
-
-
-
-    <!-- <contact-details [petId]="selectedPetId" *ngIf="selectedPetId; else petList"></contact-details> -->
     <contact-details> </contact-details>
 
-
-        <button (click)="onAddContact()">add contact</button>
-        <contact-filter></contact-filter>
-        <contact-list (onRemove)="onRemoveContact($event)"
-            [contacts]="contacts$ | async"></contact-list>
+    <button (click)="onAddContact()">add contact</button>
+    <contact-filter></contact-filter>
+    <contact-list (onRemove)="onRemoveContact($event)" [contacts]="contacts$ | async"></contact-list>
 
 </section>
+
+<router-outlet></router-outlet>

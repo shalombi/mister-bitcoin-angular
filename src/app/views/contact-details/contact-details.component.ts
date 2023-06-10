@@ -22,16 +22,17 @@ export class ContactDetailsComponent implements OnInit {
   subscription!: Subscription
 
   async ngOnInit(): Promise<void> {
-    // const contact = await lastValueFrom(this.contactService.getContactById(this.contactId))
-    // this.contact = contact
 
     this.subscription = this.route.params.subscribe(async params => {
       const contactId = params['id']
       const contact = await lastValueFrom(this.contactService.getContactById(contactId))
       this.contact = contact
-
     })
 
+  }
+
+  onBack() {
+    this.router.navigateByUrl('/contact')
   }
 
 

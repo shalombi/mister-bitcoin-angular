@@ -1,8 +1,9 @@
-<section class="contact-preview">
-    <!-- <p>contact-preview works!</p> -->
-    <div>
-        <span>name: {{contact.name}}</span> 
-        <button (click)=onRemoveContact()>x</button>
+<section class="contact-preview flex gap-2">
+
+    <div class="cursor-pointer" [routerLink]="['/contact', contact._id]">
+        <span>name: {{contact.name}}</span>
     </div>
+    <button class="cursor-pointer" (click)=onRemoveContact()>x</button>
+    <button [routerLink]="['/contact/edit', contact._id]">Edit</button>
 
 </section>

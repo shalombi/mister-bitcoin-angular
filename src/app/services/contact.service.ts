@@ -173,22 +173,46 @@ export class ContactService {
     }
 
     public saveContact(contact: Contact) {
+        // return pet._id ? this._edit(pet) : this._add(pet)
         return contact._id ? this._updateContact(contact) : this._addContact(contact)
     }
 
+    public getEmptyContact() {
+        return { name: '', email: '', phone: '' }
+    }
+
     private _updateContact(contact: Contact) {
-        //mock the server work
-        this._contactsDb = this._contactsDb.map(c => contact._id === c._id ? contact : c)
-        // change the observable data in the service - let all the subscribers know
-        this._contacts$.next(this._sort(this._contactsDb))
+        // //mock the server work
+        // this._contactsDb = this._contactsDb.map(c => contact._id === c._id ? contact : c)
+        // // change the observable data in the service - let all the subscribers know
+        // this._contacts$.next(this._sort(this._contactsDb))
+        // return Promise.resolve()
+
+        const contacts = this._contactsDb
+        const contactIdx = contacts.findIndex(_contact => _contact._id === contact._id)
+        contacts.splice(contactIdx, 1, contact)
+        this._contacts$.next(contacts)
+        return of(contact)
     }
 
     private _addContact(contact: Contact) {
         //mock the server work
-        const newContact = new Contact(contact.name, contact.email, contact.phone);
-        if (typeof newContact.setId === 'function') newContact.setId(getRandomId());
-        this._contactsDb.push(newContact)
-        this._contacts$.next(this._sort(this._contactsDb))
+        // console.log(contact)
+        // const newContact = new Contact('contact.name', contact.email, contact.phone)
+
+        // if (typeof newContact.setId === 'function') newContact.setId(getRandomId())
+        // console.log(newContact)
+        // // newContact.setId(getRandomId())
+
+        // this._contactsDb.push(newContact)
+        // this._contacts$.next(this._sort(this._contactsDb))
+        // return Promise.resolve()
+
+
+        contact._id = getRandomId()
+        this._contactsDb.push(contact)
+        this._contacts$.next(this._contactsDb)
+        return of(contact)
     }
 
     private _sort(contacts: Contact[]): Contact[] {

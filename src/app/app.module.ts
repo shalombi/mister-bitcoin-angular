@@ -15,6 +15,7 @@ import { ContactPreviewComponent } from './cmp/contact-preview/contact-preview.c
 import { ContactDetailsComponent } from './views/contact-details/contact-details.component';
 import { ContactFilterComponent } from './cmp/contact-filter/contact-filter.component';
 import { AppHeaderComponent } from './cmp/app-header/app-header.component';
+import { ContactEditComponent } from './cmp/contact-edit/contact-edit.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AppHeaderComponent } from './cmp/app-header/app-header.component';
     ContactPreviewComponent,
     ContactDetailsComponent,
     ContactFilterComponent,
-    AppHeaderComponent
+    AppHeaderComponent,
+    ContactEditComponent
   ],
   imports: [
     BrowserModule,

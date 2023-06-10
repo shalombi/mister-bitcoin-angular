@@ -1,0 +1,12 @@
+<section class="pet-edit">
+    <h2>{{contact._id ? 'Edit':'Add'}} Contact</h2>
+    <form (ngSubmit)="onSaveContact()">
+        <label for="name">Name</label>
+        <input [(ngModel)]="contact.name" type="text" name="name" id="name">
+
+        <!-- 
+        <label for="age">Age</label>
+        <input [(ngModel)]="pet.age" type="number" name="age" id="age"> -->
+        <button>Save</button>
+    </form>
+</section>
